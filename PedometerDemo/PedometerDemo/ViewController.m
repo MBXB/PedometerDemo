@@ -16,7 +16,6 @@
 {
     CMPedometer *_pedometer;
 }
-
 //简单的几个计步器的demo
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,24 +31,18 @@
     }
     //2. 创建计步器
     _pedometer = [CMPedometer new];
-    
     //3. 开始计步
     [_pedometer startPedometerUpdatesFromDate:[NSDate date] withHandler:^(CMPedometerData * _Nullable pedometerData, NSError * _Nullable error) {
-        
         //4. 主线程中更新UI
         [self performSelectorOnMainThread:@selector(updateUI:) withObject:pedometerData.numberOfSteps waitUntilDone:YES];
-        
     }];
 }
 - (void)updateUI:(NSNumber *)steps {
-    self.showStepL.text = [NSString stringWithFormat:@"您当前一共走了%@步", steps];
+    self.showStepL.text = [NSString stringWithFormat:@"大人当前一共走了%@步", steps];
 }
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end
